@@ -1,0 +1,61 @@
+<div>
+  <mat-radio-group
+    [(ngModel)]="mode"
+    aria-label="Выбор способа добавления фото"
+    class="radio-group"
+  >
+    <mat-radio-button [value]="'url'" class="example-margin"
+      >Ввести URL</mat-radio-button
+    >
+    <mat-radio-button [value]="'file'" class="example-margin"
+      >Загрузить файл</mat-radio-button
+    >
+  </mat-radio-group>
+
+  <div *ngIf="mode === 'url'">
+    <mat-form-field appearance="fill" class="form-child">
+      <mat-label>URL изображения</mat-label>
+      <input
+        matInput
+        [(ngModel)]="imageUrl"
+        (input)="onURLChange()"
+        placeholder="Введите URL изображения"
+      />
+    </mat-form-field>
+  </div>
+
+  <div *ngIf="mode === 'file'">
+    <mat-form-field appearance="fill" class="form-child">
+      <input
+        matInput
+        readonly
+        [value]="selectedFile?.name || 'Нет файла'"
+        placeholder="Выберите файл"
+      />
+      <input
+        type="file"
+        accept="image/*"
+        (change)="onFileSelected($event)"
+        style="display: none"
+        #fileInput
+      />
+      <button
+        mat-icon-button
+        type="button"
+        (click)="fileInput.click()"
+        matSuffix
+      >
+        <mat-icon>attach_file</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+
+  <div *ngIf="previewImageUrl" class="preview-container">
+    <img
+      mat-card-image
+      [src]="previewImageUrl"
+      class="preview-image"
+      (error)="onImageError($event)"
+    />
+  </div>
+</div>

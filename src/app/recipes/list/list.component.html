@@ -1,0 +1,100 @@
+<div class="container mt-4">
+  <h2 mat-h2>Список рецептов</h2>
+  <mat-form-field class="w-100 mb-4" appearance="outline">
+    <mat-label>Поиск по названию</mat-label>
+    <input
+      matInput
+      type="text"
+      class="form-control"
+      [(ngModel)]="searchQuery"
+      (input)="onSearch()"
+      name="serach"
+    />
+    <button
+      *ngIf="searchQuery"
+      mat-icon-button
+      matSuffix
+      (click)="clearSearch()"
+      aria-label="Clear search"
+      aria-label="Clear search"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Сортировать по</mat-label>
+    <mat-select [(value)]="sortField" (selectionChange)="onSort()">
+      <mat-option value="title">Названию</mat-option>
+      <mat-option value="createdAt">Дате создания</mat-option>
+      <mat-option value="prepTime">Времени приготовления</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="list-group recipe-list">
+    <div
+      *ngFor="let recipe of filteredRecipes"
+      class="list-group-item d-flex justify-content-between align-items-center"
+    >
+      <!-- Название рецепта как ссылка -->
+      <img
+        *ngIf="recipe.image"
+        [src]="recipe.image"
+        alt="{{ recipe.title }}"
+        class="recipe-image me-3"
+        (error)="onImageError($event)"
+      />
+      <a
+        [routerLink]="['/recipes', recipe.id]"
+        class="recipe-title flex-grow-1 text-decoration-none"
+      >
+        {{ recipe.title }}
+      </a>
+      <span class="recipe-time" title="Время приготовления">
+        ({{ recipe.preparationTime }} m)
+      </span>
+      <span class="recipe-date" title="Дата создания">
+        {{ recipe.createdAt | date : "dd.MM.yyyy HH:mm" }}
+      </span>
+      <div
+        class="recipe-actions"
+        *ngIf="isLoggedIn && recipe.userId === currentUserId"
+      >
+        <button
+          class="btn btn-sm btn-danger me-2"
+          (click)="deleteRecipe(recipe.id)"
+          aria-label="Delete recipe"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+
+        <button
+          class="btn btn-sm btn-primary"
+          [routerLink]="['/recipes/edit', recipe.id]"
+          aria-label="Edit recipe"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <button
+    mat-raised-button
+    routerLink="/recipes/new"
+    color="accent"
+    class="add-recipe-btn"
+  >
+    Добавить рецепт
+  </button>
+  <button
+    *ngIf="currentPage < totalPages"
+    (click)="loadMore()"
+    class="load-more-button"
+  >
+    Загрузить ещё
+  </button>
+
+  <!-- Сообщение о том, что все рецепты загружены -->
+  <p *ngIf="currentPage >= totalPages" class="end-message">
+    Больше рецептов нет.
+  </p>
+</div>

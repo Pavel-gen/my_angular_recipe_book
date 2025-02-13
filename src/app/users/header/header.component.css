@@ -1,0 +1,31 @@
+/* site-header.css */
+
+.site-header {
+    position: sticky; /* Делает шапку "липкой" */
+    top: 0; /* Шапка будет прикреплена к верхней части экрана */
+    z-index: 1000; /* Убедитесь, что она находится поверх других элементов */
+    background-color: #1e3a8a; /* Яркий и красивый цвет */
+    color: white; /* Текст белого цвета для контраста */
+    padding: 10px 20px; /* Отступы для удобства */
+    display: flex;
+    justify-content: flex-end; /* Выравнивание кнопок справа */
+    align-items: center; /* Центрирование содержимого по вертикали */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Добавляем тень для эффекта глубины */
+  }
+  
+  .site-header button {
+    margin-left: 10px; /* Отступ между кнопками */
+    padding: 8px 16px; /* Размер кнопок */
+    border: none; /* Убираем границу */
+    border-radius: 5px; /* Закругленные углы */
+    background-color: #ffffff; /* Белый фон кнопок */
+    color: #1e3a8a; /* Цвет текста соответствует цвету шапки */
+    cursor: pointer; /* Курсор указывает на возможность нажатия */
+    font-weight: bold; /* Жирный шрифт */
+    transition: all 0.3s ease; /* Плавный переход при hover */
+  }
+  
+  .site-header button:hover {
+    background-color: #d1e7fd; /* Изменение цвета при наведении */
+    color: #1e3a8a; /* Сохраняем контраст */
+  }

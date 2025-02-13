@@ -1,0 +1,59 @@
+/* site-sidebar.css */
+
+.site-sidebar {
+    position: fixed; /* Фиксированная позиция */
+    top: 60px; /* Отступ от верхней части (чуть ниже header) */
+    left: 0; /* Прикреплено к левой стороне */
+    width: 200px; /* Ширина панели */
+    padding: 20px; /* Внутренний отступ */
+    background-color: #f8fafc; /* Белый цвет с легким оттенком */
+    box-shadow: 4px 0 6px rgba(0, 0, 0, 0.1); /* Тень справа для разделения */
+    z-index: 999; /* Убедитесь, что панель поверх других элементов */
+    height: calc(100vh - 60px); /* Высота занимает все пространство экрана минус высота header */
+    overflow-y: auto; /* Добавляем скролл, если контент не помещается */
+  }
+  
+  .site-sidebar nav {
+    display: flex;
+    flex-direction: column; /* Кнопки размещаются вертикально */
+  }
+  
+  .site-sidebar button {
+    margin-bottom: 10px; /* Отступ между кнопками */
+    padding: 10px 15px; /* Размер кнопок */
+    border: none; /* Убираем границу */
+    border-radius: 5px; /* Закругленные углы */
+    background-color: #e2e8f0; /* Серый фон */
+    color: #334155; /* Темный текст */
+    font-size: 16px; /* Размер шрифта */
+    font-weight: bold; /* Жирный шрифт */
+    cursor: pointer; /* Курсор указывает на возможность нажатия */
+    transition: all 0.3s ease; /* Плавный переход при hover */
+    width: 100%; /* Кнопки занимают всю ширину панели */
+    text-align: left; /* Текст выровнен по левому краю */
+  }
+  
+  .site-sidebar button:hover {
+    background-color: #cbd5e1; /* Изменение цвета при наведении */
+    color: #1e3a8a; /* Яркий синий текст */
+  }
+  
+  /* Адаптивность для маленьких экранов */
+  @media (max-width: 768px) {
+    .site-sidebar {
+      width: 100%; /* Панель занимает всю ширину */
+      position: static; /* Убираем фиксированную позицию */
+      top: auto;
+      left: auto;
+      box-shadow: none; /* Убираем тень */
+      margin-top: 20px; /* Отступ после header */
+    }
+  }
+  .site-sidebar button.active {
+    background-color: #1e3a8a !important; /* Яркий синий цвет */
+    color: white !important; /* Белый текст */
+  }
+  
+  .site-sidebar button.active:hover {
+    background-color: #1e40af !important; /* Темно-синий при наведении */
+  }

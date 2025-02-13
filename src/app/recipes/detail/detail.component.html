@@ -1,0 +1,68 @@
+<div class="container mt-4" *ngIf="recipe">
+  <mat-card class="recipe-detail-card">
+    <mat-card-header class="mb-3">
+      <mat-card-title>{{ recipe.title }}</mat-card-title>
+    </mat-card-header>
+    <div class="recipe-image-container">
+      <img
+        *ngIf="recipe.image"
+        mat-card-image
+        [src]="recipe.image"
+        class="img-fluid"
+        (error)="onImageError($event)"
+      />
+      <mat-icon
+        *ngIf="!recipe.image"
+        svgIcon="food-placeholder"
+        class="placeholder-image"
+      ></mat-icon>
+    </div>
+    <mat-card-content class="mt-3">
+      <p>
+        <strong>Дата создания:</strong>
+        {{ recipe.createdAt | date : "dd.MM.yyyy HH:mm" }}
+      </p>
+      <p *ngIf="recipe.updatedAt">
+        <strong>Дата последнего обновления:</strong>
+        {{ recipe.updatedAt | date : "medium" }}
+      </p>
+      <p>
+        <strong>Автор: </strong><span *ngIf="isOwner">Я</span>
+        <span *ngIf="!isOwner">{{ mainUser.email || "Неизвестный" }}</span>
+      </p>
+
+      <p>
+        <strong>Время приготовления: </strong>{{ recipe.preparationTime }} мин
+      </p>
+      <p><strong>Описание: </strong>{{ recipe.description }}</p>
+      <p><strong>Ингредиенты: </strong></p>
+      <div>
+        <div
+          *ngFor="let ingredient of recipe.ingredients"
+          class="ingredient-item"
+        >
+          <mat-icon matListIcon>check_circle</mat-icon>
+
+          <span matLine class="ingredient-name">{{ ingredient.name }}</span>
+          <span
+            matLine
+            class="ingredient-details"
+            *ngIf="ingredient.quantity || ingredient.unit"
+          >
+            ({{ ingredient.quantity }} {{ ingredient.unit }})
+          </span>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button mat-button routerLink="/recipes">Назад</button>
+      <button
+        mat-button
+        routerLink="/recipes/edit/{{ recipe.id }}"
+        *ngIf="isOwner"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

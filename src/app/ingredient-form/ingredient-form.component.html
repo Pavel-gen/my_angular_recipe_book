@@ -1,0 +1,29 @@
+<div class="ingredient-row" fxLayout="row">
+  <!-- Поле для названия ингредиента -->
+  <mat-form-field fxFlex="60">
+    <mat-label>Название ингредиента</mat-label>
+    <input matInput [(ngModel)]="ingredient.name" required />
+  </mat-form-field>
+
+  <!-- Поле для количества -->
+  <mat-form-field fxFlex="15">
+    <mat-label>Количество</mat-label>
+    <input matInput type="number" [(ngModel)]="ingredient.quantity" />
+  </mat-form-field>
+
+  <!-- Выбор единицы измерения -->
+  <mat-form-field fxFlex="15">
+    <mat-label>Единица</mat-label>
+    <mat-select [(ngModel)]="ingredient.unit">
+      <mat-option [value]="">Выбрать</mat-option>
+      <mat-option value="кг">кг</mat-option>
+      <mat-option value="г">г</mat-option>
+      <mat-option value="шт">шт</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Кнопка удаления -->
+  <button mat-icon-button (click)="remove.emit()" color="warn">
+    <mat-icon>delete</mat-icon>
+  </button>
+</div>

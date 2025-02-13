@@ -1,0 +1,76 @@
+/* Контейнер изображения */
+.recipe-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px; /* Фиксированная высота */
+    background-color: #c7d5ed; /* Нейтральный фоновый цвет */
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative; /* Для центрирования изображения */
+  }
+
+  .recipe-image-container img {
+    width: auto; /* Автоматическая ширина */
+    height: 100%; /* Заполняет всю высоту контейнера */
+    object-fit: contain; /* Сохраняет пропорции и показывает все изображение */
+    max-width: 100%; /* Ограничивает ширину */
+  }
+  
+  /* Placeholder для изображения */
+  .placeholder-image {
+    font-size: 100px;
+    color: #ccc;
+  }
+  
+  /* Карточка рецепта */
+  .recipe-detail-card {
+    max-width: 800px;
+    margin: 0 auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Список ингредиентов */
+  mat-list {
+    padding: 0;
+  }
+  
+  mat-list-item {
+    padding: 8px 0;
+  }
+  
+  /* Кнопки действий */
+  mat-card-actions button {
+    margin-left: 8px;
+  }
+  .ingredient-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+  }
+  
+  /* Иконка элемента списка */
+  .ingredient-item mat-icon {
+    font-size: 20px;
+    color: #0d6efd; /* Цвет иконки (синий) */
+    margin-right: 8px;
+  }
+  
+  /* Название ингредиента */
+  .ingredient-name {
+    font-weight: bold;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  /* Дополнительная информация */
+  .ingredient-details {
+    margin-left: 10px;
+    font-size: 14px;
+    color: #6c757d; /* Серый цвет для второстепенной информации */
+  }
+  
+  /* Разделитель между ингредиентами */
+  .mat-list-item:not(:last-child) {
+    border-bottom: 1px solid #e9ecef; /* Легкая разделительная линия */
+  }

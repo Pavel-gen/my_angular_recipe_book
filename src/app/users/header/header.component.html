@@ -1,0 +1,9 @@
+<header class="site-header">
+  <div *ngIf="!authService.isLoggedIn(); else logoutBlock">
+    <button (click)="openAuthModal('login')">Sign In</button>
+    <button (click)="openAuthModal('register')">Sign Up</button>
+  </div>
+  <ng-template #logoutBlock>
+    <button (click)="logout()">Log Out</button>
+  </ng-template>
+</header>

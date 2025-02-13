@@ -1,0 +1,53 @@
+/* Общие стили */
+.my-dialog-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333; /* Темно-серый цвет заголовка */
+  }
+  
+.dialog-content{
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Расстояние между элементами */
+    padding: 20px;
+  }
+  
+  mat-form-field {
+    width: 100%; /* Поля занимают всю ширину */
+  }
+  
+  button.mat-raised-button {
+    width: 100%; /* Кнопка занимает всю ширину */
+    margin-top: 10px; /* Отступ сверху */
+  }
+  
+  .action-buttons {
+    display: flex;
+    justify-content: space-between; /* Кнопки размещаются по краям */
+    gap: 10px; /* Расстояние между кнопками */
+  }
+  
+  button.mat-button {
+    color: #007bff; /* Синий цвет текста для кнопок */
+    text-transform: uppercase; /* Заглавные буквы */
+    font-weight: bold;
+  }
+  
+  button.mat-button:hover {
+    text-decoration: underline; /* Подчеркивание при наведении */
+  }
+  
+  div.mat-dialog-actions {
+    display: flex;
+    justify-content: flex-end; /* Кнопка "Закрыть" справа */
+    margin-top: 20px; /* Отступ сверху */
+  }
+  
+  button.mat-button[mat-button] {
+    color: #6c757d; /* Серый цвет для кнопки "Закрыть" */
+  }
+  
+  button.mat-button[mat-button]:hover {
+    color: #007bff; /* Синий цвет при наведении */
+  }

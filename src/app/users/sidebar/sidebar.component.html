@@ -1,0 +1,14 @@
+<aside class="site-sidebar">
+  <nav>
+    <button (click)="setView('all')" [ngClass]="{ active: view === 'all' }">
+      Все рецепты
+    </button>
+    <button
+      *ngIf="authService.isLoggedIn()"
+      (click)="setView('my')"
+      [ngClass]="{ active: view === 'my' }"
+    >
+      Мои рецепты
+    </button>
+  </nav>
+</aside>

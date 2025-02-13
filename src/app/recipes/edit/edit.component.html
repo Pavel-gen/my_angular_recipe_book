@@ -1,0 +1,76 @@
+<div class="container recipe-edit-container">
+  <h2 mat-h2>{{ isEditMode ? "Редактировать" : "Создать" }} рецепт</h2>
+
+  <form (ngSubmit)="onSubmit()" class="recipe-form">
+    <mat-form-field appearance="fill" class="mb-3">
+      <mat-label>Название</mat-label>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="recipeForm.title"
+        required
+        name="title"
+        class="form-control"
+      />
+    </mat-form-field>
+    <div class="mb-3">
+      <h3>Фото</h3>
+      <app-image-upload
+        [initialImage]="recipeForm.image"
+        #imageUploader
+        class="image-upload"
+      ></app-image-upload>
+    </div>
+
+    <mat-form-field appearance="fill" class="mb-3">
+      <mat-label>Время приготовления (мин)</mat-label>
+      <input
+        matInput
+        type="number"
+        required
+        name="preparationTime"
+        [(ngModel)]="recipeForm.preparationTime"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="mb-3">
+      <mat-label>Описание</mat-label>
+      <textarea
+        matInput
+        rows="6"
+        class="form-control"
+        [(ngModel)]="recipeForm.description"
+        required
+        name="description"
+      ></textarea>
+    </mat-form-field>
+    <div class="ingredients-section">
+      <h3>Ингредиенты</h3>
+      <div
+        *ngFor="let ingredient of recipeForm.ingredients; let i = index"
+        class="ingredient-item mb-3 w-100"
+      >
+        <app-ingredient-form
+          [ingredient]="ingredient"
+          (remove)="removeIngredient(i)"
+        ></app-ingredient-form>
+      </div>
+      <button
+        mat-button
+        type="button"
+        (click)="addIngredient()"
+        class="add-ingredient-btn"
+      >
+        Добавить ингредиент
+      </button>
+    </div>
+
+    <div class="actions d-flex justify-content-end mt-4">
+      <button mat-button routerLink="/recipes" class="ms-2">Отмена</button>
+      <button mat-raised-button color="primary" type="submit">
+        {{ isEditMode ? "Обновить" : "Сохранить " }}
+      </button>
+    </div>
+  </form>
+</div>

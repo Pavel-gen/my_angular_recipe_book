@@ -1,0 +1,28 @@
+.radio-group
+{
+  display: flex;
+  justify-content: center
+}
+
+.preview-container {
+    margin-top: 16px;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+  
+  .preview-image {
+    max-width: 300px; /* Максимальная ширина */
+    max-height: 300px; /* Максимальная высота */
+    border-radius: 8px; /* Скругленные углы */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Тени для лучшего вида */
+    object-fit: cover; /* Изображение будет масштабироваться с сохранением пропорций */
+  }
+
+
+
+  .form-child
+  {
+    width: 100%;
+  }

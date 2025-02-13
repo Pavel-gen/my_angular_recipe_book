@@ -1,0 +1,240 @@
+ 
+ .container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+h2.mat-h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+mat-form-field .mat-form-field-wrapper {
+  padding: 8px;
+}
+
+mat-form-field mat-icon-button {
+  margin-left: 8px;
+}
+
+mat-form-field input {
+  font-size: 16px;
+}
+.recipe-list {
+  margin-bottom: 20px;
+}
+
+.recipe-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.recipe-item:last-child {
+  border-bottom: none;
+}
+
+.recipe-title a {
+  font-size: 18px;
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.recipe-title a:hover {
+  text-decoration: underline;
+}
+
+.recipe-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.recipe-actions button {
+  padding: 8px;
+}
+button[routerLink="/recipes/new"] {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+button[routerLink="/recipes/new"]:hover {
+  transform: scale(1.02);
+  transition: transform 0.2s ease-in-out;
+}
+ 
+recipe-list .list-group-item {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.recipe-list .list-group-item:hover {
+  background-color: #f8f9fa;
+}
+
+.recipe-title {
+  font-size: 18px;
+  color: #333;
+  font-weight: 500;
+}
+
+.recipe-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.recipe-actions .btn {
+  padding: 6px 10px;
+  font-size: 14px;
+}
+.recipe-image {
+  width: 50px; /* Ширина изображения */
+  height: 50px; /* Высота изображения */
+  object-fit: cover; /* Сохранение пропорций */
+  border-radius: 8px; /* Скругленные углы */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тени для лучшего вида */
+}
+
+.recipe-date {
+  font-size: 14px;
+  color: #6c757d; /* Серый цвет для второстепенной информации */
+  font-weight: normal;
+  white-space: nowrap; /* Предотвращает перенос текста */
+  margin-right: 10px;
+}
+
+/* Подсказка при наведении */
+.recipe-date:hover {
+  text-decoration: underline;
+  cursor: help;
+}
+
+.load-more-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.end-message {
+  margin-top: 20px;
+  font-style: italic;
+  color: #666;
+}
+.recipe-time
+{
+  font-size: 12px;
+  margin-right: 5px;
+  color: #333232;
+
+}
+.add-recipe-btn {
+  display: flex; /* Используем Flexbox для точного управления размещением */
+  justify-content: center; /* Центрируем текст горизонтально */
+  align-items: center; /* Центрируем текст вертикально */
+  height: 50px; /* Высота кнопки */
+  font-size: 16px; /* Размер шрифта */
+  font-weight: bold; /* Жирный шрифт */
+  margin-bottom: 20px; /* Отступ снизу */
+  border-radius: 8px; /* Закругленные углы */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Добавляем тень для глубины */
+}
+
+.add-recipe-btn span {
+  white-space: nowrap; /* Предотвращаем перенос текста на новую строку */
+}
+ /* .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .recipe-list {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+
+
+  .recipe-item {
+    display: flex !important;
+    align-items: center !important; 
+    justify-content: space-between !important;
+    padding-top: 16px;
+    border-bottom: 1px solid #e0e0e0;
+    height: auto !important;
+  }
+  
+  .recipe-title {
+    flex-grow: 1; 
+    margin-right: 16px; 
+  }
+  
+  .recipe-actions {
+    display: flex !important;
+    gap: 8px; 
+    align-items: center !important; 
+  }
+  
+  .recipe-item:last-child {
+    border-bottom: none;
+  }
+  
+
+  
+  .recipe-title a {
+    text-decoration: none;
+    color: #1976d2;
+    font-weight: bold;
+    display: inline-block; 
+  vertical-align: middle;
+  }
+  
+  .recipe-title a:hover {
+    text-decoration: underline;
+  }
+
+  
+  .add-recipe-button {
+    width: 100%;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  mat-form-field {
+    width: 100%;
+  }
+  
+  mat-icon {
+    font-size: 20px;
+  }
+  
+  mat-icon-button {
+    background-color: transparent;
+    border: none;
+    padding: 4px;
+  }
+  
+  mat-icon-button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }  */

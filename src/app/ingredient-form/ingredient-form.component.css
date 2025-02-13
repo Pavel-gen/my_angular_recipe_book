@@ -1,0 +1,48 @@
+.ingredient-row {
+    width: 100%; /* Занимает всю ширину родительского элемента */
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  /* Стиль для поля названия ингредиента */
+  .ingredient-name {
+    flex: 5; /* Больше пространства для названия */
+  }
+  
+  /* Стиль для поля количества */
+  .ingredient-quantity {
+    flex: 2; /* Меньше пространства для количества */
+  }
+  
+  /* Стиль для выбора единиц */
+  .ingredient-unit {
+    flex: 1.5; /* Ещё меньше пространства для единиц */
+  }
+  
+  /* Стиль для кнопки удаления */
+  .remove-button-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  @media (max-width: 768px) {
+    .ingredient-row {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .ingredient-name,
+    .ingredient-quantity,
+    .ingredient-unit,
+    .remove-button-container {
+      width: 100%;
+      margin-bottom: 8px;
+    }
+  
+    .remove-button-container {
+      margin-bottom: 0;
+      justify-content: flex-end;
+    }
+  }
+  
