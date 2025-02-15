@@ -4,7 +4,7 @@ export interface Ingredient {
   unit?: string;
 }
 export interface User {
-  id?: string;
+  uid?: string;
   email: string;
   password?: string;
   createdAt?: Date;
@@ -18,5 +18,5 @@ export interface Recipe {
   description: string;
   createdAt: Date | string;
   updatedAt?: Date | string;
-  userId: User['id'];
+  userId: User['uid'];
 }

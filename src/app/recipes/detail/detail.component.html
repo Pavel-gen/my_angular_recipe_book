@@ -28,7 +28,7 @@
       </p>
       <p>
         <strong>Автор: </strong><span *ngIf="isOwner">Я</span>
-        <span *ngIf="!isOwner">{{ mainUser.email || "Неизвестный" }}</span>
+        <span *ngIf="!isOwner">{{ mainUser?.email || "Неизвестный" }}</span>
       </p>
 
       <p>

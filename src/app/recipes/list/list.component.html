@@ -77,14 +77,18 @@
       </div>
     </div>
   </div>
-  <button
-    mat-raised-button
-    routerLink="/recipes/new"
-    color="accent"
-    class="add-recipe-btn"
-  >
-    Добавить рецепт
-  </button>
+  <div>
+    <button
+      *ngIf="isLoggedIn"
+      mat-raised-button
+      routerLink="/recipes/new"
+      color="accent"
+      class="add-recipe-btn"
+    >
+      Добавить рецепт
+    </button>
+  </div>
+
   <button
     *ngIf="currentPage < totalPages"
     (click)="loadMore()"

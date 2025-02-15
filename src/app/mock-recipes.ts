@@ -2,8 +2,8 @@ import { Recipe } from './recipe.model';
 import { User } from './recipe.model';
 
 export const USERS: User[] = [
-  { id: '1', email: 'user1@example.com', password: 'password123' },
-  { id: '2', email: 'user2@example.com', password: 'qwerty456' },
+  { uid: '1', email: 'user1@example.com', password: 'password123' },
+  { uid: '2', email: 'user2@example.com', password: 'qwerty456' },
 ];
 
 // export const RECIPES: Recipe[] = [

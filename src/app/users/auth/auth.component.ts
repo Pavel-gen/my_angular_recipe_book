@@ -30,7 +30,6 @@ export class AuthComponent {
   email = '';
   password = '';
   isLogin: boolean;
-  
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { mode: 'login' | 'register' },
@@ -44,11 +43,11 @@ export class AuthComponent {
     this.isLogin = !this.isLogin;
   }
 
-  onSubmit(): void {
+  async onSubmit(): Promise<void> {
     if (this.isLogin) {
-      this.authService.login(this.email, this.password);
+      await this.authService.login(this.email, this.password);
     } else {
-      this.authService.register(this.email, this.password);
+      await this.authService.register(this.email, this.password);
     }
     this.closeModal();
   }

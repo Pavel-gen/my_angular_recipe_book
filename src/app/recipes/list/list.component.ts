@@ -58,12 +58,13 @@ export class RecipeListComponent {
 
   async ngOnInit() {
     await this.updateTotalPages();
-
-    this.loadRecipes();
+    if (this.recipes.length == 0) {
+      this.loadRecipes();
+    }
     this.subscription = this.authService.currentUser$.subscribe((user) => {
       this.currentUser = user;
-      this.currentUserId = user?.id || null;
-      this.isLoggedIn = !!user?.id;
+      this.currentUserId = user?.uid || null;
+      this.isLoggedIn = !!user?.uid;
     });
 
     this.sidebarService.currentView$.subscribe(async (view) => {
@@ -86,7 +87,7 @@ export class RecipeListComponent {
         const currentUser = this.authService.getCurrentUser();
         this.totalPages = await this.recipeService.getTotalPages(
           'my',
-          currentUser.id
+          currentUser.uid
         );
       }
     } catch (error) {
@@ -110,9 +111,9 @@ export class RecipeListComponent {
       newRecipes = await this.recipeService.getRecipes(this.currentPage);
     } else if (this.currentView == 'my') {
       const currentUser = this.authService.getCurrentUser();
-      console.log(currentUser.id, this.currentPage);
+      console.log(currentUser);
       newRecipes = await this.recipeService.getRecipesByUserId(
-        currentUser.id,
+        currentUser.uid,
         this.currentPage
       );
     }

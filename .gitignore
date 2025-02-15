@@ -12,6 +12,7 @@ npm-debug.log
 yarn-error.log
 serviceAccountKey.json
 /src/app/.env
+/src/enviroment
 
 # IDEs and editors
 .idea/

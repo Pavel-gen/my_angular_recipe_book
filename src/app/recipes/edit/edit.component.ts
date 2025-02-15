@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IngredientFormComponent } from '../../ingredient-form/ingredient-form.component';
 import { ImageUploadComponent } from '../../image-upload/image-upload.component';
+import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-edit',
   standalone: true,
@@ -33,16 +34,17 @@ export class RecipeEditComponent {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private recipeService: RecipeService
+    private recipeService: RecipeService,
+    private authService: AuthService
   ) {}
 
   @ViewChild('imageUploader') imageUploader!: ImageUploadComponent;
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.isEditMode = true;
-      const recipe = this.recipeService.getRecipe(id);
+      const recipe = await this.recipeService.getRecipe(id);
       if (recipe) {
         this.recipeForm = { ...recipe };
       } else {
@@ -53,6 +55,13 @@ export class RecipeEditComponent {
   onSubmit(): void {
     const finalImage = this.imageUploader.getFinalImage();
     this.recipeForm.image = finalImage || '';
+    const userId = this.authService.getCurrentUserId();
+    if (!userId) {
+      alert('Пользователь нe найден');
+      this.router.navigate(['/recipes']);
+      return;
+    }
+    this.recipeForm.userId = userId;
 
     if (this.isEditMode) {
       this.recipeService.updateRecipe(this.recipeForm);

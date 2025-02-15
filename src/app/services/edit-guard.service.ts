@@ -14,10 +14,10 @@ export class EditGuardService implements CanActivate {
     private recipeService: RecipeService
   ) {}
 
-  canActivate(route: ActivatedRouteSnapshot): boolean {
-    const currentUserId = this.authService.getCurrentUser()?.id;
+  async canActivate(route: ActivatedRouteSnapshot): Promise<boolean> {
+    const currentUserId = this.authService.getCurrentUser()?.uid;
     const recipeId = route.params['id'];
-    const recipe = this.recipeService.getRecipe(recipeId); // метод должен быть реализован в auth.service
+    const recipe = await this.recipeService.getRecipe(recipeId); // метод должен быть реализован в auth.service
 
     if (!currentUserId || !recipe || recipe.userId !== currentUserId) {
       this.router.navigate(['/recipes']);

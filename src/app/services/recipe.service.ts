@@ -17,9 +17,10 @@ import {
   limit,
   orderBy,
   startAfter,
+  setDoc,
+  getDoc,
 } from '@angular/fire/firestore';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { limitToLast } from 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -93,8 +94,25 @@ export class RecipeService {
   }
 
   // Получение конкретного рецепта по ID
-  getRecipe(id: string): Recipe | undefined {
-    console.log(this.recipesSubject.value.find((r) => r.id === id));
+  async getRecipe(id: string): Promise<Recipe | undefined> {
+    const localRecipe = this.recipesSubject.value.find((r) => r.id === id);
+    if (localRecipe) {
+      return localRecipe;
+    }
+
+    const recipeDocRef = doc(this.firestore, `${this.collectionName}/${id}`);
+    const recipeSnapshot = await getDoc(recipeDocRef);
+
+    if (recipeSnapshot.exists()) {
+      const recipeData = recipeSnapshot.data() as Recipe;
+      recipeData.id = recipeSnapshot.id;
+      console.log('Рецепт загружен из базы данных:', recipeData);
+      return recipeData;
+    } else {
+      alert('Рецепт не найден в базе данных.');
+      return undefined;
+    }
+
     return this.recipesSubject.value.find((r) => r.id === id);
   }
 
@@ -102,23 +120,29 @@ export class RecipeService {
   async addRecipe(recipe: Recipe): Promise<void> {
     recipe.createdAt = new Date().toISOString();
     recipe.updatedAt = new Date().toISOString();
-    const numericId = Date.now(); // Возвращает количество миллисекунд с 1970 года
-    recipe.id = numericId.toString();
+    const numericId = Date.now().toString();
+    recipe.id = numericId;
+
+    const recipeRef = doc(
+      this.firestore,
+      `${this.collectionName}/${numericId}`
+    );
+    await setDoc(recipeRef, { ...recipe });
+
     this.recipesSubject.value.push(recipe);
-    const recipeCollection = collection(this.firestore, this.collectionName);
-    await addDoc(recipeCollection, { ...recipe });
+
+    this.recipesSubject.value.push(recipe);
   }
 
   // Обновление существующего рецепта
   async updateRecipe(updatedRecipe: Recipe): Promise<void> {
     updatedRecipe.updatedAt = new Date().toISOString();
-
+    console.log(updatedRecipe.id);
     const recipeRef = doc(
       this.firestore,
       `${this.collectionName}/${updatedRecipe.id}`
     );
     await updateDoc(recipeRef, { ...updatedRecipe });
-    // this.loadRecipes();
   }
 
   // Удаление рецепта

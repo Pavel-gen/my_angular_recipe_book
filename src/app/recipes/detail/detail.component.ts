@@ -35,21 +35,21 @@ export class RecipeDetailComponent {
     private authService: AuthService
   ) {}
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     const id = this.route.snapshot.paramMap.get('id')?.toString();
     if (id) {
-      this.recipe = this.recipeService.getRecipe(id);
+      this.recipe = await this.recipeService.getRecipe(id);
     }
 
-    if (!this.recipe) {
+    if (!this.recipe || !this.recipe.userId) {
       return;
     }
     this.currentUser = this.authService.getCurrentUser();
-    if (this.recipe.userId) {
-      this.mainUser = this.authService.getUserById(this.recipe.userId);
-    }
-    if (this.currentUser && this.mainUser) {
-      this.isOwner = this.currentUser.id == this.mainUser.id;
+    this.mainUser = await this.authService.getUserById(this.recipe.userId);
+    console.log('Main user', this.mainUser.email);
+    console.log('Current User', this.currentUser);
+    if (this.mainUser) {
+      this.isOwner = this.currentUser.uid == this.mainUser.uid;
     }
   }
   onImageError(event: Event): void {

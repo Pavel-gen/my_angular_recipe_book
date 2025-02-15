@@ -24,8 +24,8 @@ export class HeaderComponent {
     console.log(`Opening ${mode} modal`);
   }
 
-  logout(): void {
-    this.authService.logout();
+  async logout(): Promise<void> {
+    await this.authService.logout();
   }
   closeModal(): void {
     this.isModalOpen = false; // Закрываем модальное окно
